@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>confirm box</title>
+    <style>
+        .confirm-box{
+            background: rgba(0,0,0,0.5);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .message-box{
+            background-color: #fff;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .button-box{
+            margin-top: 30px;
+
+        }
+        .yes-button,.no-button{
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0 20px;
+            border-radius: 5px;
+            cursor:pointer;
+        }
+        .yes-button{
+            background-color: green;
+            color: white;
+        }
+        .no-button{
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function showconfirm(message)
+        {
+            var confirmbos = document.createElement("div");
+            confirmbos.classList.add('confirm-box');
+
+            var mesasagebos = document.createElement("div");
+            mesasagebos.classList.add('message-box');
+            mesasagebos.textContent= message;
+            confirmbos.appendChild(mesasagebos);
+            
+            var  buttonbox = document.createElement("div");
+            buttonbox.classList.add('button-box');
+            mesasagebos.appendChild(buttonbox);
+
+            var yesbutton = document.createElement("button");
+            yesbutton.classList.add('yes-button');
+            yesbutton.textContent= "yes";
+            buttonbox.appendChild(yesbutton);
+            yesbutton.addEventListener('click',yesbuttonclick);
+
+            var nobutton = document.createElement("button");
+            nobutton.classList.add('no-button');
+            nobutton.textContent= "no";
+            buttonbox.appendChild(nobutton);
+            nobutton.addEventListener('click',nobuttonclick);
+        function removeconfirmbox()
+        {
+            document.body.removeChild(confirmbos);
+        }
+
+        function yesbuttonclick()
+        {
+            callback(true);
+        }
+        function nobuttonclick()
+        {
+            callback(false);
+            removeconfirmbox();
+        }
+
+            document.body.appendChild(confirmbos);
+        }
+        showconfirm("are you 18 years old?",function(result){
+            if(result)
+            {
+                console.log("you pressed yes");
+            }
+            else{
+              console.log("you pressed no");
+            }
+        });
+    </script>
+</body>
+</html>

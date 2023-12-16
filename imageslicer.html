@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>image slider</title>
+    <style>
+        .slider-container{
+            width: 800px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid white;
+        }
+        .slider{
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide
+        {
+            flex: 0 0 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+        }
+        .slider-controls{
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .prev-slide,.next-slide{
+            margin: 0 10px;
+        }
+        .slide.active{
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide" style="background: url(christian-wiediger-WkfDrhxDMC8-unsplash.jpg);">
+            </div>
+            <div class="slide" style="background: url(download.jpg);">
+            </div>
+            <div class="slide" style="background: url(QCMLOGO.png);">
+            </div>
+            <div class="slider-controls">
+               <button  class="prev-slide">
+                prev
+               </button>
+               <button class="next-slide">
+                next
+               </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const slider = document.querySelector(".slider");
+        const slides = document.querySelectorAll(".slide");
+        const prevbttn = document.querySelector(".prev-slide");
+        const nextbttn = document.querySelector(".next-slide")
+
+        let slideindex = 0;
+        slides[slideindex].classList.add("active");
+        prevbttn.addEventListener('click',prevslide);
+
+        nextbttn.addEventListener('click',nextslide);
+        function prevslide() {
+    slides[slideindex].classList.remove('active');
+    slideindex = (slideindex === 0) ? slides.length - 1 : slideindex - 1;
+    slides[slideindex].classList.add('active');
+    slider.style.transform = `translateX(-${slideindex * 100}%)`;
+}
+
+function nextslide() {
+    slides[slideindex].classList.remove('active');
+    slideindex = (slideindex === slides.length - 1) ? 0 : slideindex + 1;
+    slides[slideindex].classList.add('active');
+    slider.style.transform = `translateX(-${slideindex * 100}%)`;
+}
+
+    </script>
+</body>
+</html>

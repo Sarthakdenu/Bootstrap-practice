@@ -1,0 +1,34 @@
+.container{
+    border: 12px solid black;
+    text-align: center;
+}
+.row{
+    border: 7px solid red;
+    text-align: center;
+}
+/* .col{
+    border: 6px solid green;
+} */
+
+#footer{
+    background-color: cyan;
+}
+#header{
+    background-color: orange;
+}
+#menu{
+    background-color: pink;
+}
+#menu ul{
+    list-style: none;
+    margin: 0;
+}
+#menu ul li{
+    display: inline-block;
+}
+#section{
+    background-color: grey;
+}
+#sidebar{
+    background-color: green;
+}
